@@ -7,7 +7,7 @@ const FormData = require('form-data');
 const {GoogleGenerativeAI} = require('@google/generative-ai')
 const app = express();
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 
 const genAI = new GoogleGenerativeAI('AIzaSyCcvPfgez4w6J7Ze9--BROhrxD3TtTJObU');
 
