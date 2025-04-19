@@ -68,7 +68,16 @@ async function run(username) {
 // Middleware to parse JSON
 app.use(express.json());
 
-
+app.get('/get_current_date', (req,res) => {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const currentDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+    const currentDay = new Date().getDay().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+    // const currentDate = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    console.log(currentDate);
+    
+    res.json({ 'date': currentDate, 'day': days[currentDay] });
+}
+);
 //endpoint for uploading resume
 app.post('/get_student_details',upload.single('resume'),async (req,res)=>{
     
