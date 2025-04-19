@@ -104,7 +104,9 @@ app.post('/get_student_details',upload.single('resume'),async (req,res)=>{
         }
     }).then(response => {
         console.log('✅ Parsed Resume:', response.data);
-        res.send({'Parsed Resume':response.data, 'GitHub Summary':github_summary});
+        var json_response = response.data;
+        json_response["github_summary"] = github_summary;
+        res.send(json_response);
       })
       .catch(error => {
         console.error('❌ Error:', error.response?.data || error.message);
