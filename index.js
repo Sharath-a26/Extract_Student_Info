@@ -4,7 +4,8 @@ const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
-const {GoogleGenerativeAI} = require('@google/generative-ai')
+const {GoogleGenerativeAI} = require('@google/generative-ai');
+const { json } = require('stream/consumers');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -105,6 +106,7 @@ app.post('/get_student_details',upload.single('resume'),async (req,res)=>{
     }).then(response => {
         console.log('✅ Parsed Resume:', response.data);
         var json_response = response.data;
+        json_response["skills"] = json_response["skills"].join(",");
         json_response["github_summary"] = github_summary;
         res.send(json_response);
       })
