@@ -71,7 +71,7 @@ app.use(express.json());
 
 //endpoint for uploading resume
 app.post('/get_student_details',upload.single('resume'),async (req,res)=>{
-    if (!req.file) return res.status(400).send('No file Uploaded');
+    
 
     //parsing student's github link and getting student details like interests, skills, etc.
     
@@ -81,12 +81,12 @@ app.post('/get_student_details',upload.single('resume'),async (req,res)=>{
     const github_summary = await run(username)
     //parsing resume and getting student details
     const form = new FormData();
-    form.append('file', fs.createReadStream(req.file.path),{
-        filename: req.file.originalname,
+    form.append('file', fs.createReadStream('./resume_details/Sharath S R_Resume_Final.pdf'),{
+        filename: 'Sharath S R_Resume_Final.pdf',
         contentType: 'application/pdf'
       });
 
-    const fileStream = fs.createReadStream(req.file.path)
+    const fileStream = fs.createReadStream('./resume_details/Sharath S R_Resume_Final.pdf')
 
     axios.post('https://api.apilayer.com/resume_parser/upload', fileStream, {
         headers: {
