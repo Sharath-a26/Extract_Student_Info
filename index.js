@@ -69,6 +69,12 @@ async function run(username) {
 // Middleware to parse JSON
 app.use(express.json());
 
+
+app.get('get_research_details',(req,res)=> {
+  res.send({'researcher_name': 'Remya Krishnan', 'research_work': 'A Biometric Secured Anonymous Communication Protocol for Vehicular Ad hoc NETwork',
+    'research_work_description': 'Communication security in Vehicular Ad hoc NETwork (VANET) is a significant concern. Existing schemes for secure communication in VANET suffer from high computation, communication complexities, and exploitable vulnerabilities. This paper proposes a multi-level biometric-based scheme for authentication and anonymous communication in VANET. The use of fingerprint hashing and modified Blom’s scheme provides a high level of security to our scheme. Furthermore, the proposed scheme achieves lower computational and communication costs than the existing schemes due to lightweight operations and minimal message exchange required to complete the authentication process. The security of the proposed scheme is verified using the Real or Random (RoR) model, ProVerif tool, and informal security analysis. The results of the ns-2 simulation show the practical applicability and network performance of our scheme compared to existing schemes.'
+  })
+});
 app.get('/get_current_date', (req,res) => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const currentDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
@@ -79,6 +85,7 @@ app.get('/get_current_date', (req,res) => {
     res.json({ 'date': currentDate, 'day': days[currentDay] });
 }
 );
+
 //endpoint for uploading resume
 app.post('/get_student_details',upload.single('resume'),async (req,res)=>{
     
